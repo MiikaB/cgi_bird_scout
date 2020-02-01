@@ -1,3 +1,5 @@
+// Imports
+
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Picker, ScrollView, Alert, ActivityIndicator} from 'react-native';
 import * as SQLite from 'expo-sqlite';
@@ -7,6 +9,8 @@ import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 
 export default function App() {
+
+// Setting up hooks and predefining them
 
 const [name, setName] = useState('');
 const [rarity, setRarity] = useState('');
@@ -18,7 +22,13 @@ const [latitude, setLatitude] = useState(null);
 const [altitude, setAltitude] = useState(null);
 const [longitude, setLongitude] = useState(null);
 const [saving, setSaving] = useState('');
+
+// Opening connection to database
+
 const db = SQLite.openDatabase('birdscoutdb.db');
+
+// useEffect loads its content on project start up as first thing
+// Good for creating tables and running a few nesessary functions
 
 useEffect(() => {
   db.transaction(tx => {
@@ -28,6 +38,8 @@ useEffect(() => {
   getLocation();
   timeStamp();
 }, []);
+
+// function for getting coordinates
 
 const getLocation = async () => {
   let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -42,6 +54,9 @@ const getLocation = async () => {
   }
 };
 
+// Modal view toggle, hidden as first and changes
+// opposite value as the funtion is called
+
 const toggleModal = () => {
   setName('')
   setRarity('')
@@ -49,6 +64,8 @@ const toggleModal = () => {
   setSaving('');
   setIsModalVisible(!isModalVisible);
 };
+
+// function for getting current time and forming it
 
 const timeStamp = () => {
   var date = new Date().getDate();
@@ -64,6 +81,9 @@ const timeStamp = () => {
   }
 };
 
+// function for gathering entry data and saving new entity
+// to the local database
+
 const saveBird = async () => {
   Waiter();
   await getLocation();
@@ -78,6 +98,8 @@ const saveBird = async () => {
   }, null, updateList)
 };
 
+// function to update current database list
+
 const updateList = () => {
   db.transaction(tx => {
     tx.executeSql('select * from birdscout;', [], (_, { rows }) =>
@@ -86,15 +108,21 @@ const updateList = () => {
     });
   };
 
+// function to delete from database table
+
 const deleteBird = (id) => {
   db.transaction(tx => { tx.executeSql('delete from birdscout where id = ?;', [id]);},
   null, updateList
   )
   };
 
+// Simplifyed function to show user to wait a second or two
+
 const Waiter = () => {
   setSaving('Saving... May take a few seconds!');
 }
+
+// UI of the page
 
   return ( 
     <View style={styles.container}>
@@ -182,6 +210,8 @@ const Waiter = () => {
     </View>
   );
 }
+
+// Styles
 
 const styles = StyleSheet.create({
   container: {
