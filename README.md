@@ -43,7 +43,7 @@ LAN is by default option as the browser opens, and it requires the mobile device
 Scan the QR Code with your mobile device and it should start building the project on the mobile device. Once complete the app is up and running and ready to be tested!
 
 ## Final notes of installation
-If the project somehow doesn't build up, or when 100% completion it shows a page with a lot of red errors please give me feed back asap via e-mail `$ miika.mikael@hotmail.com`
+If the project somehow doesn't build up, or when 100% completion it shows a page with a lot of red errors please give me feed back asap via e-mail ` miika.mikael@hotmail.com `
 
 The project has been tested only with several computers including a clean install (Pre-requisites installed first) and using only android mobile device.
 
@@ -53,4 +53,11 @@ The project has been tested only with several computers including a clean instal
 - Local database for saving data entry
 - Long press deletion with alert
 
-# Experience with the project
+# Experience with the excercise
+Project was fun to make as it gave you pretty much open hands to fulfill the requirements. The logic of the app was the most fun to work with as of getting coordinates and sending data to the local SQLite database.
+
+I am pleased with the result even though it might not be the pretties UI, but as you were only given a week to work on the project i would say i did very well.
+
+My thougths on the project are, it works like a charm. The UI can be customized later as the logic of the project is my priority. What good is a good looking app that has broken functions and doesn't serve it's purpose?!
+
+Hope you are as pleased with the result as i am!

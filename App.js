@@ -25,8 +25,8 @@ useEffect(() => {
     tx.executeSql('create table if not exists birdscout (id integer primary key not null, name text, rarity text, notes text, timestamp text, latitude integer, altitude integer, longitude integer);');
   });
   updateList();
-  timeStamp();
   getLocation();
+  timeStamp();
 }, []);
 
 const getLocation = async () => {
@@ -124,7 +124,13 @@ const Waiter = () => {
       }
       bottomDivider
       chevron
-      onPress={() => deleteBird(item.id)}
+      onLongPress={() => Alert.alert('Deleting, are you sure?','',
+      [
+        {text: 'Delete', onPress: () => {deleteBird(item.id)}},
+        {text: 'Cancel', style:'cancel'},
+      ],
+      {cancelable: false},
+      )}
       />
       ))
       }
